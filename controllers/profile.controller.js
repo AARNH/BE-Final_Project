@@ -28,10 +28,21 @@ class ProfileController {
 
   static async update(req, res, next) {
     try {
-      // const image_cloudinary = await cloudinary.uploader.upload(req.file.path, {
-      //   // resource_type: "image",
-      //   public_id: `second-hand/user-images/${req.body.nama}/${req.file.filename}`,
-      // });
+      let image_cloudinary
+      if (req.file != null){
+        image_cloudinary = await cloudinary.uploader.upload(req.file.path, {
+          // resource_type: "image",
+          public_id: `second-hand/user-images/${req.body.nama}/${req.file.filename}`,
+        });
+      }
+      
+
+      const user = await ProfileUser.findOne({
+        where: {
+          user_id: req.user.id,
+        }
+      })
+      const imageUser = user.image_url
 
       const updateProfileUser = await ProfileUser.update(
         {
@@ -40,7 +51,7 @@ class ProfileController {
           alamat: req.body.alamat,
           no_handphone: req.body.no_handphone,
           // image_url: `http://localhost:3000/images/${req.file.filename}`,
-          // image_url: image_cloudinary.secure_url,
+          image_url: req.file !== null ? image_cloudinary?.secure_url : imageUser
         },
         {
           where: {

@@ -1,28 +1,29 @@
-const { Notifikasi, Product, Penawaran } = require("../models");
+const {
+  Notifikasi,
+  Product,
+  Penawaran,
+  User
+} = require("../models");
 
 class NotifController {
-  static async getNotif (req, res, next) {
+  static async getNotif(req, res, next) {
     try {
       const readNotif = await Notifikasi.findAll({
         where: {
           isClick: false,
         },
-        // include: {
-        //   model: User,
-        //   attibutes: ["id", "email", "createdAt", "updatedAt"],
-        // },
         include: {
-            model: Product,
-            attributes: ["id", "nama", "harga", "product_photos", "createdAt", "updatedAt"],
-          },
+          model: User,
+          attibutes: ["id", "email", "createdAt", "updatedAt"],
+        },
         include: {
-            model: Penawaran,
+          model: Product,
+          attributes: ["id", "nama", "harga", "product_photos", "createdAt", "updatedAt"],
+        },
+        include: {
+          model: Penawaran,
         }
       });
-
-      await Notifikasi.update({
-        isClick: true,
-      })
 
       {
         res.status(200).json({
@@ -32,6 +33,26 @@ class NotifController {
           readNotif,
         });
       }
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async updateNotifbyId(res, req, next) {
+    try {
+      const notifUpdate = await Notifikasi.update({
+        isClick: true,
+      }, {
+        where: {
+          id: req.params.id
+        }
+      })
+      res.status(200).json({
+        statusCode: "200",
+        status: "Update Notification",
+        message: "Successfully update notification",
+        notifUpdate,
+      });
     } catch (err) {
       next(err);
     }

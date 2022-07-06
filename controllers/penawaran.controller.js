@@ -25,15 +25,15 @@ class PenawaranController{
 
         const NotifSeller = await Notifikasi.create({
           product_id: req.params.id,
-          // user_id: req.user.id,
+          user_id: req.user.id,
           penawaran_id: harga.id,  
           jenis_notifikasi: 'Created Penawaran',
           isClick: false,
         })
 
-       const NotifBuyer = await Notifikasi.create({
+        const NotifBuyer = await Notifikasi.create({
           product_id: req.params.id,
-          // user_id: req.user.id,
+          user_id: req.user.id,
           penawaran_id: harga.id,  
           jenis_notifikasi: 'Penawaran Successfully Submitted',
           isClick: false,

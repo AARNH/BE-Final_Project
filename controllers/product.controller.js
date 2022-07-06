@@ -104,26 +104,26 @@ class ProductController {
 
       // console.log(req.files);
 
-      // const paths = req.files.map((e) => e.path);
-      // const filenames = req.files.map((e) => e.filename);
-      // // console.log(filenames, "test filenames");
+      const paths = req.files.map((e) => e.path);
+      const filenames = req.files.map((e) => e.filename);
+      // console.log(filenames, "test filenames");
 
-      // const urls = [];
-      // for (let i = 0; i < paths.length; i++) {
-      //   // console.log(paths[i], "test pathh");
-      //   urls.push(
-      //     cloudinary.uploader.upload(paths[i], {
-      //       // resource_type: "image",
-      //       public_id: `second-hand/products-images/${req.body.nama}/${filenames[i]}`,
-      //     })
-      //   );
-      // }
+      const urls = [];
+      for (let i = 0; i < paths.length; i++) {
+        // console.log(paths[i], "test pathh");
+        urls.push(
+          cloudinary.uploader.upload(paths[i], {
+            // resource_type: "image",
+            public_id: `second-hand/products-images/${req.body.nama}/${filenames[i]}`,
+          })
+        );
+      }
 
-      // // console.log(req.files, 'ini paths');
+      // console.log(req.files, 'ini paths');
 
-      // const images_cloudinary = await Promise.all(urls);
+      const images_cloudinary = await Promise.all(urls);
 
-      // console.log(images_cloudinary);
+      console.log(images_cloudinary);
 
       const createdProduct = await Product.create({
         nama: req.body.nama,
@@ -132,14 +132,14 @@ class ProductController {
         // product_photos: req.files.map(
         //   (element) => `http://localhost:3000/images/${element.filename}`
         // ),
-        // product_photos: images_cloudinary.map((e) => e.secure_url),
+        product_photos: images_cloudinary.map((e) => e.secure_url),
         categories: req.body.categories,
         sold: false,
         seller_id: req.user.id,
       });
       const Notif = await Notifikasi.create({
         product_id: createdProduct.id,
-        // user_id: req.user.id,
+        user_id: req.user.id,
         jenis_notifikasi: 'Publish product',
         isClick: false,
       })
