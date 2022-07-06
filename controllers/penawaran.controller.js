@@ -23,18 +23,27 @@ class PenawaranController{
           
         });
 
-        // Notification.create({
-        //   userId: req.user.id
-        // })
-        // Notification.create({
-        //   userId: product.seller_id
-        // })
+        const NotifSeller = await Notifikasi.create({
+          product_id: req.params.id,
+          // user_id: req.user.id,
+          penawaran_id: harga.id,  
+          jenis_notifikasi: 'Created Penawaran',
+          isClick: false,
+        })
+
+       const NotifBuyer = await Notifikasi.create({
+          product_id: req.params.id,
+          // user_id: req.user.id,
+          penawaran_id: harga.id,  
+          jenis_notifikasi: 'Penawaran Successfully Submitted',
+          isClick: false,
+        })
         
 
         res.status(201).json({
           status: 201,
           message: "Penawaranmu berhasil dikirim",
-          harga,
+          harga,NotifSeller,NotifBuyer
         });
       }catch (err){
         next (err);

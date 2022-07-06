@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "buyerId",
         as: "User",
       });
-
+      Penawaran.hasMany(models.Notifikasi, { foreignKey: "penawaran_id" })
     }
   }
   Penawaran.init({

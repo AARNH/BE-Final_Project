@@ -66,9 +66,9 @@ router.post(
     if (!req.body.harga) {
       errors.push("Harga required");
     }
-    if (req.files.length === 0) {
-      errors.push("Image required");
-    }
+    // if (req.files.length === 0) {
+    //   errors.push("Image required");
+    // }
 
     if (errors.length > 0) {
       next({
