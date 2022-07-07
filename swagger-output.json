@@ -7,13 +7,207 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
-    "/api/v1/profile/": {
+    "/api/v1/auth/register": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Endpoint Register",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": "201"
+                },
+                "status": {
+                  "example": "Created"
+                },
+                "message": {
+                  "example": "Successfuly create user"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "example": 9
+                    },
+                    "email": {
+                      "example": "example@gmail.com"
+                    },
+                    "createdAt": {
+                      "example": "2022-06-24T15:29:06.583Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": 422
+                },
+                "message": {
+                  "example": "Email already exists"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": 500
+                },
+                "message": {
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Endpoint Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": "200"
+                },
+                "status": {
+                  "example": "Login"
+                },
+                "message": {
+                  "example": "Success login"
+                },
+                "token": {
+                  "example": "eyJhbGciOiJIUzI1NiIsInR51213CI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJ0ZXN0YWphQGdtYWlsLmNvbSIsImlhdCI6MTY1NjA4NTI0OX0.PPo7yuFV9OlI4oJypVLnipIL9ImgxKLXMR-ztsFR6hE"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "example": 9
+                    },
+                    "email": {
+                      "example": "example@gmail.com"
+                    },
+                    "createdAt": {
+                      "example": "2022-06-24T15:29:06.583Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid email or password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": 401
+                },
+                "message": {
+                  "example": "Invalid email or password"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": 500
+                },
+                "message": {
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/v1/profile": {
       "get": {
-        "description": "",
+        "tags": ["Profile User"],
+        "summary": "Endpoint Get Profile",
         "parameters": [
           {
             "name": "user_id",
@@ -27,57 +221,57 @@
             "description": "Get List Data Profile",
             "schema": {
               "type": "array",
-              "items":{
+              "items": {
                 "type": "object",
-                "properties":{
-                  "id":{
-                    "example":"1"
+                "properties": {
+                  "id": {
+                    "example": "1"
                   },
-                  "user_id":{
-                    "example":"1"
+                  "user_id": {
+                    "example": "1"
                   },
-                  "nama":{
-                    "example":"Binar"
+                  "nama": {
+                    "example": "Binar"
                   },
-                  "kota":{
-                    "example":"Jakarta"
+                  "kota": {
+                    "example": "Jakarta"
                   },
-                  "alamat":{
-                    "example":"Jakarta"
+                  "alamat": {
+                    "example": "Jakarta"
                   },
-                  "no_handphone":{
-                    "example":"021234258"
+                  "no_handphone": {
+                    "example": "021234258"
                   },
-                  "image_url":{
-                    "example":"https:claudinary/image_url-1655728032816-batako plastik.jpg"
+                  "image_url": {
+                    "example": "https:claudinary/image_url-1655728032816-batako plastik.jpg"
                   },
                   "createdAt": {
                     "example": "2022-04-21T15:05:35.841Z"
                   },
-                  "updatedAt":{
+                  "updatedAt": {
                     "example": "2022-04-21T15:05:35.841Z"
                   }
                 }
               }
             }
           },
-          "401":{
+          "401": {
             "description": "error authorization",
             "schema": {
-              "type":"object",
-              "properties":{
-                "message":{
+              "type": "object",
+              "properties": {
+                "message": {
                   "example": "Unauthorized request"
                 }
               }
             }
           },
-          "500":{
+          "500": {
             "description": "server error",
             "schema": {
-              "type":"object",
-              "properties":{
-                "message":{
+              "type": "object",
+              "properties": {
+                "message": {
                   "example": "Internal Server Error"
                 }
               }
@@ -86,7 +280,8 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": ["Profile User"],
+        "summary": "Endpoint Update Profile",
         "parameters": [
           {
             "name": "user_id",
@@ -98,32 +293,32 @@
         "responses": {
           "200": {
             "description": "Update data profile",
-            "schema":{ 
-              "type":"object",
-              "properties":{
-                "message":{
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
                   "example": "Successfully update user"
                 }
               }
             }
           },
-          "401":{
+          "401": {
             "description": "error authorization",
             "schema": {
-              "type":"object",
-              "properties":{
-                "message":{
+              "type": "object",
+              "properties": {
+                "message": {
                   "example": "Unauthorized request"
                 }
               }
             }
           },
-          "500":{
+          "500": {
             "description": "server error",
             "schema": {
-              "type":"object",
-              "properties":{
-                "message":{
+              "type": "object",
+              "properties": {
+                "message": {
                   "example": "Internal Server Error"
                 }
               }
@@ -132,11 +327,107 @@
         }
       }
     },
-    "/api-docs": {
+
+    "/api/v1/product/{id}": {
       "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": ["Products"],
+        "summary": "Endpoint Get Product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": "200"
+                },
+                "status": {
+                  "example": "Success"
+                },
+                "message": {
+                  "example": "Successfully get product by id 1"
+                },
+                "product": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "example": 9
+                    },
+                    "nama": {
+                      "example": "product update"
+                    },
+                    "deskripsi": {
+                      "example": "product pertama update"
+                    },
+                    "harga": {
+                      "example": 20000
+                    },
+                    "product_photos": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "seller_id": {
+                      "example": 1
+                    },
+                    "sold": {
+                      "example": false
+                    },
+                    "createdAt": {
+                      "example": "2022-06-24T15:29:06.583Z"
+                    },
+                    "updatedAt": {
+                      "example": "2022-06-24T15:29:06.583Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": 404
+                },
+                "message": {
+                  "example": "Product Not Found!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "example": 500
+                },
+                "message": {
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
