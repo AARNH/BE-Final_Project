@@ -1,434 +1,4506 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Documentation API Final Project",
-    "description": "Documentation API Final Project",
-    "version": "1.0.0"
+    "version": "1.0",
+    "title": "Second Hand API",
+    "contact": {}
   },
-  "host": "localhost:3000",
-  "basePath": "/",
+  "host": "example.com",
+  "basePath": "/api/v1",
+  "securityDefinitions": {},
   "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
-    "/api/v1/auth/register": {
+    "/auth/register": {
       "post": {
-        "tags": ["Authentication"],
-        "summary": "Endpoint Register",
+        "summary": "Register",
+        "tags": ["Register"],
+        "operationId": "Register",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["application/x-www-form-urlencoded"],
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "nama",
+            "in": "formData",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": "201"
-                },
-                "status": {
-                  "example": "Created"
-                },
-                "message": {
-                  "example": "Successfuly create user"
-                },
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "example": 9
-                    },
-                    "email": {
-                      "example": "example@gmail.com"
-                    },
-                    "createdAt": {
-                      "example": "2022-06-24T15:29:06.583Z"
-                    }
-                  }
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+              "$ref": "#/definitions/400Register%7CFieldrequired1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 400,
+                "message": [
+                  "Nama required",
+                  "Email required",
+                  "Password required"
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "83"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"53-yBWliPpzRDF9vDk6DURJom4PbfA\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 15:06:48 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           },
           "422": {
             "description": "Unprocessable Entity",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": 422
-                },
-                "message": {
-                  "example": "Email already exists"
-                }
+              "$ref": "#/definitions/422Register%7CEmailalreadyexist1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 422,
+                "message": "Email already exists"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-n6hiefLbhhdUJeWdOfO+83FXBRs\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 15:08:56 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           },
-          "500": {
-            "description": "Internal Error",
+          "201": {
+            "description": "Created",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": 500
-                },
-                "message": {
-                  "example": "Internal Server Error"
+              "$ref": "#/definitions/201Register"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "201",
+                "status": "Created",
+                "message": "Successfully create user",
+                "data": {
+                  "id": 9,
+                  "email": "testaja@gmail.com",
+                  "createdAt": "2022-06-24T15:29:06.583Z"
                 }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "159"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"9f-P8L6EQOaSHHfwPYI69dfh0E6S/M\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 15:29:06 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           }
         }
       }
     },
-    "/api/v1/auth/login": {
+    "/auth/login": {
       "post": {
-        "tags": ["Authentication"],
-        "summary": "Endpoint Login",
+        "summary": "Login",
+        "tags": ["Login"],
+        "operationId": "Login",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["application/x-www-form-urlencoded"],
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "email",
+            "in": "formData",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": "200"
-                },
-                "status": {
-                  "example": "Login"
-                },
-                "message": {
-                  "example": "Success login"
-                },
-                "token": {
-                  "example": "eyJhbGciOiJIUzI1NiIsInR51213CI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJ0ZXN0YWphQGdtYWlsLmNvbSIsImlhdCI6MTY1NjA4NTI0OX0.PPo7yuFV9OlI4oJypVLnipIL9ImgxKLXMR-ztsFR6hE"
-                },
+              "$ref": "#/definitions/200Login"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Login",
+                "message": "Success login",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJ0ZXN0YWphQGdtYWlsLmNvbSIsImlhdCI6MTY1NjA4NTI0OX0.PPo7yuFV9OlI4oJypVLnipIL9ImgxKLXMR-ztsFR6hE",
                 "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "example": 9
-                    },
-                    "email": {
-                      "example": "example@gmail.com"
-                    },
-                    "createdAt": {
-                      "example": "2022-06-24T15:29:06.583Z"
-                    }
-                  }
+                  "id": 9,
+                  "nama": "test aja",
+                  "email": "testaja@gmail.com",
+                  "createdAt": "2022-06-24T15:29:06.583Z"
                 }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "327"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"147-3TGlqXMXpRFe//ef9gjtNwbulic\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 15:40:49 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+              "$ref": "#/definitions/400Login%7CFieldRequired1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 400,
+                "message": ["Email required", "Password required"]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "67"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"43-gDgYrtDzUl5g/Nw6cPOvXeh/L/U\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 16:29:21 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           },
           "401": {
-            "description": "Invalid email or password",
+            "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": 401
-                },
-                "message": {
-                  "example": "Invalid email or password"
-                }
+              "$ref": "#/definitions/401Login%7CInvalidemailorpassword1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Invalid email or password"
               }
-            }
-          },
-          "500": {
-            "description": "Internal Error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": 500
-                },
-                "message": {
-                  "example": "Internal Server Error"
-                }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "56"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"38-HulY5f7wPYuYuvrCLy9KEcohTmc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 16:30:54 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           }
         }
       }
     },
-
-    "/api/v1/profile": {
+    "/profile": {
       "get": {
-        "tags": ["Profile User"],
-        "summary": "Endpoint Get Profile",
+        "summary": "Get Profile User",
+        "tags": ["Profile"],
+        "operationId": "GetProfileUser",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [
           {
-            "name": "user_id",
-            "in": "path",
+            "name": "Authorization",
+            "in": "header",
             "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Get List Data Profile",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "example": "1"
-                  },
-                  "user_id": {
-                    "example": "1"
-                  },
-                  "nama": {
-                    "example": "Binar"
-                  },
-                  "kota": {
-                    "example": "Jakarta"
-                  },
-                  "alamat": {
-                    "example": "Jakarta"
-                  },
-                  "no_handphone": {
-                    "example": "021234258"
-                  },
-                  "image_url": {
-                    "example": "https:claudinary/image_url-1655728032816-batako plastik.jpg"
-                  },
-                  "createdAt": {
-                    "example": "2022-04-21T15:05:35.841Z"
-                  },
-                  "updatedAt": {
-                    "example": "2022-04-21T15:05:35.841Z"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "error authorization",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "example": "Unauthorized request"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "example": "Internal Server Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["Profile User"],
-        "summary": "Endpoint Update Profile",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Update data profile",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "example": "Successfully update user"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "error authorization",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "example": "Unauthorized request"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "example": "Internal Server Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-
-    "/api/v1/product/{id}": {
-      "get": {
-        "tags": ["Products"],
-        "summary": "Endpoint Get Product by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "type": "string",
+            "description": ""
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": "200"
-                },
-                "status": {
-                  "example": "Success"
-                },
-                "message": {
-                  "example": "Successfully get product by id 1"
-                },
-                "product": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "example": 9
-                    },
-                    "nama": {
-                      "example": "product update"
-                    },
-                    "deskripsi": {
-                      "example": "product pertama update"
-                    },
-                    "harga": {
-                      "example": 20000
-                    },
-                    "product_photos": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "categories": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "seller_id": {
-                      "example": 1
-                    },
-                    "sold": {
-                      "example": false
-                    },
-                    "createdAt": {
-                      "example": "2022-06-24T15:29:06.583Z"
-                    },
-                    "updatedAt": {
-                      "example": "2022-06-24T15:29:06.583Z"
-                    }
+              "$ref": "#/definitions/200GetProfileUser"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Get Profile",
+                "message": "Successfully get profile",
+                "userProfile": {
+                  "id": 9,
+                  "user_id": 9,
+                  "nama": "test aja",
+                  "kota": null,
+                  "alamat": null,
+                  "no_handphone": null,
+                  "image_url": null,
+                  "createdAt": "2022-06-24T15:29:06.635Z",
+                  "updatedAt": "2022-06-24T15:29:06.635Z",
+                  "User": {
+                    "id": 9,
+                    "email": "testaja@gmail.com",
+                    "password": "$2a$10$C7ayfROvOtWLbe2zsHJc9emJShQ8eOMdmp8mQwl/2jTsafimAbctK",
+                    "createdAt": "2022-06-24T15:29:06.583Z",
+                    "updatedAt": "2022-06-24T15:29:06.583Z"
                   }
                 }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "470"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1d6-P33DB/Xxqn6sUj460Y5wK0rZwnw\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 16:48:53 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401GetProfileUser%7CUnauthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-c78BqaMJ8o9Wk4Hk7Rn9uG1q9Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 16:49:29 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "summary": "Update Profile User",
+        "tags": ["Profile"],
+        "operationId": "UpdateProfileUser",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "kota",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "alamat",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "no_handphone",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "image_url",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200UpdateProfileUser"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Updated",
+                "message": "Successfully update profile",
+                "updateProfileUser": [1]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "103"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"67-tAG2cL6TjyOjnrYFQMtJsco1XQY\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 16:53:33 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401UpdateProfileUser%7CUnauthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-c78BqaMJ8o9Wk4Hk7Rn9uG1q9Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 16:54:06 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/product/{id}": {
+      "get": {
+        "summary": "Get Product By ID",
+        "tags": ["Products"],
+        "operationId": "GetProductByID",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404GetProductByID%7CNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 404,
+                "message": "Product Not Found !"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "50"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"32-YfjkRjYSStJ2E8D3Iypwwc8OgTI\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 18:07:48 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200GetProductByID"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Success",
+                "message": "Successfully get product by id 1",
+                "product": {
+                  "id": 1,
+                  "nama": "product update",
+                  "deskripsi": "product pertama update",
+                  "harga": 20000,
+                  "product_photos": [
+                    "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+                  ],
+                  "categories": ["Makanan", "Minuman", "Fashion"],
+                  "seller_id": 1,
+                  "sold": false,
+                  "createdAt": "2022-07-06T13:35:47.793Z",
+                  "updatedAt": "2022-07-06T13:45:01.478Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "484"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1e4-J6gWwyw0pEQOCleAhX0Mu0TU2/M\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 07 Jul 2022 15:05:36 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Product",
+        "tags": ["Products"],
+        "operationId": "UpdateProduct",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "deskripsi",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "harga",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "categories",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "product_photos",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401UpdateProduct%7CUnauthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-c78BqaMJ8o9Wk4Hk7Rn9uG1q9Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 25 Jun 2022 03:16:35 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           },
           "404": {
             "description": "Not Found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": 404
-                },
-                "message": {
-                  "example": "Product Not Found!"
-                }
+              "$ref": "#/definitions/404UpdateProduct%7CProductNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 404,
+                "message": "Product not found"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "48"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"30-onvVRwX+yoWBsgpgVJFFey0qxTU\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 25 Jun 2022 03:24:30 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           },
-          "500": {
-            "description": "Internal Error",
+          "200": {
+            "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "statusCode": {
-                  "example": 500
-                },
-                "message": {
-                  "example": "Internal Server Error"
+              "$ref": "#/definitions/200UpdateProduct"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Updated",
+                "message": "Berhasil mengupdate produk",
+                "data": {
+                  "id": 1,
+                  "nama": "product update",
+                  "deskripsi": "product pertama update",
+                  "harga": 20000,
+                  "product_photos": [
+                    "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+                  ],
+                  "categories": ["Makanan", "Minuman", "Fashion"],
+                  "seller_id": 1,
+                  "sold": false,
+                  "createdAt": "2022-07-06T13:35:47.793Z",
+                  "updatedAt": "2022-07-06T13:45:01.478Z"
                 }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "475"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1db-kAWlWDhR5iSkAPpu3IARrZtvzwA\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 06 Jul 2022 13:45:01 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete Product",
+        "tags": ["Products"],
+        "operationId": "DeleteProduct",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404DeleteProduct%7CProductnotfound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 404,
+                "message": "Product not found"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "48"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"30-onvVRwX+yoWBsgpgVJFFey0qxTU\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 25 Jun 2022 03:35:38 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401DeleteProduct%7CFailedtoken1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "You dont have access for this product"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "68"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"44-LOX/x/MFUmppfYS9cJ+cZmNJetk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 25 Jun 2022 03:38:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200DeleteProduct"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Delete",
+                "message": "Successfully delete product",
+                "product": {
+                  "id": 3,
+                  "nama": "baju jelek",
+                  "deskripsi": "Product kece",
+                  "harga": 10000,
+                  "product_photos": [
+                    "https://res.cloudinary.com/test-bos/image/upload/v1657114624/second-hand/products-images/baju%20jelek/product_photos-az.JPG.jpg",
+                    "https://res.cloudinary.com/test-bos/image/upload/v1656692562/second-hand/products-images/baju%20jelek/product_photos-monkey.JPG.jpg"
+                  ],
+                  "categories": ["Makanan"],
+                  "seller_id": 1,
+                  "sold": false,
+                  "createdAt": "2022-07-06T13:36:57.383Z",
+                  "updatedAt": "2022-07-06T13:36:57.383Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "571"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"23b-In6a3JS+6XhGC3V7iLVI6ZXmCYo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 06 Jul 2022 13:52:01 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/product": {
+      "post": {
+        "summary": "Create Product",
+        "tags": ["Products"],
+        "operationId": "CreateProduct",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "deskripsi",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "harga",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "product_photos",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "categories",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400CreateProduct%7CFieldRequired1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 400,
+                "message": [
+                  "Nama required",
+                  "Deskripsi required",
+                  "Harga required"
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "84"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"54-Qgm2u+vdKyjWBsjyXrSDJvea98o\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 17:20:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401CreateProduct%7CUnauthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-c78BqaMJ8o9Wk4Hk7Rn9uG1q9Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 24 Jun 2022 17:20:50 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201CreateProduct"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "201",
+                "status": "Created",
+                "message": "Successfully create product",
+                "createdProduct": {
+                  "id": 3,
+                  "nama": "baju jelek",
+                  "deskripsi": "Product kece",
+                  "harga": 10000,
+                  "product_photos": [
+                    "https://res.cloudinary.com/test-bos/image/upload/v1657114624/second-hand/products-images/baju%20jelek/product_photos-az.JPG.jpg",
+                    "https://res.cloudinary.com/test-bos/image/upload/v1656692562/second-hand/products-images/baju%20jelek/product_photos-monkey.JPG.jpg"
+                  ],
+                  "categories": ["Makanan"],
+                  "sold": false,
+                  "seller_id": 1,
+                  "updatedAt": "2022-07-06T13:36:57.383Z",
+                  "createdAt": "2022-07-06T13:36:57.383Z"
+                },
+                "Notif": {
+                  "id": 3,
+                  "product_id": 3,
+                  "user_id": 1,
+                  "jenis_notifikasi": "Publish product",
+                  "isClick": false,
+                  "updatedAt": "2022-07-06T13:36:57.499Z",
+                  "createdAt": "2022-07-06T13:36:57.499Z",
+                  "penawaran_id": null
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "774"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"306-8Z89gSjaqaOo4OZaRM97a0zq7SA\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 06 Jul 2022 13:36:57 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Get All Products",
+        "tags": ["Products"],
+        "operationId": "GetAllProducts",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200GetAllProducts%7CAuth"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Success",
+                "message": "Successfully get all products",
+                "products": []
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "95"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"5f-m2wXwYKcHjlOUOjAUrlViozMdtY\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 25 Jun 2022 03:10:24 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           }
         }
       }
+    },
+    "/product/1/offer": {
+      "post": {
+        "summary": "Create Penawaran",
+        "tags": ["Penawaran"],
+        "operationId": "CreatePenawaran",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "harga",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/404CreatePenawaran%7CProduknotFound"
+            },
+            "examples": {
+              "application/json": {
+                "statusCode": 404,
+                "message": "Produk not Found"
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/product/offer/1": {
+      "get": {
+        "summary": "Get Detail Penawaran",
+        "tags": ["Penawaran"],
+        "operationId": "GetDetailPenawaran",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetDetailPenawaran"
+            },
+            "examples": {
+              "application/json": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/product/1/offer/1/accept": {
+      "put": {
+        "summary": "Accept Penawaran",
+        "tags": ["Penawaran"],
+        "operationId": "AcceptPenawaran",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200AcceptPenawaran"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "Penawaran diterima",
+                "data": {
+                  "id": 1,
+                  "productId": 1,
+                  "buyerId": 1,
+                  "harga": 2012,
+                  "agreement": true,
+                  "createdAt": "2022-07-05T12:50:03.496Z",
+                  "updatedAt": "2022-07-05T14:16:01.191Z"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/product/1/offer/1/decline": {
+      "put": {
+        "summary": "Decline Penawaran",
+        "tags": ["Penawaran"],
+        "operationId": "DeclinePenawaran",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200DecinePenawaran"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "Penawaran ditolak",
+                "data": {
+                  "id": 1,
+                  "productId": 1,
+                  "buyerId": 1,
+                  "harga": 2012,
+                  "agreement": false,
+                  "createdAt": "2022-07-05T12:50:03.496Z",
+                  "updatedAt": "2022-07-05T14:14:20.905Z"
+                }
+              }
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/wishlist": {
+      "get": {
+        "summary": "List Wishlist",
+        "tags": ["Wishlist"],
+        "operationId": "ListWishlist",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200ListWishlist"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 200,
+                "status": "Get all",
+                "message": "Successfully get all wishlist",
+                "wishlistAll": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "product_id": 1,
+                    "createdAt": "2022-06-30T13:15:14.199Z",
+                    "updatedAt": "2022-06-30T13:15:14.199Z",
+                    "Product": {
+                      "id": 1,
+                      "nama": "product update",
+                      "deskripsi": "product pertama update",
+                      "harga": 20000,
+                      "image_url": "public\\data\\uploads\\image_url-1656336637198-monkey.JPG",
+                      "categories": ["Minuman"],
+                      "seller_id": 2,
+                      "createdAt": "2022-06-27T13:21:35.362Z",
+                      "updatedAt": "2022-06-27T13:30:37.311Z"
+                    }
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "product_id": 2,
+                    "createdAt": "2022-06-30T13:22:29.825Z",
+                    "updatedAt": "2022-06-30T13:22:29.825Z",
+                    "Product": {
+                      "id": 2,
+                      "nama": "Product second",
+                      "deskripsi": "Product baru",
+                      "harga": 10000,
+                      "image_url": "public\\data\\uploads\\image_url-1656337099099-monkey.JPG",
+                      "categories": ["Elektronik", "Makanan"],
+                      "seller_id": 2,
+                      "createdAt": "2022-06-27T13:38:19.103Z",
+                      "updatedAt": "2022-06-27T13:38:19.103Z"
+                    }
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "892"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"37c-32sxDIGM+TX2uQ1l5pPOVmJAOec\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:22:45 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401ListWishlist%7CUnauthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-c78BqaMJ8o9Wk4Hk7Rn9uG1q9Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:23:38 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Add Wishlist",
+        "tags": ["Wishlist"],
+        "operationId": "AddWishlist",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "product_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400AddWishlist%7CProductAlready1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 400,
+                "message": "Product already added to the wishlist"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "68"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"44-Q/NVvZ3iK3hAy6GsHvhtpGvjFRU\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:19:01 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201AddWishlist"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 201,
+                "status": "Add wishlist",
+                "message": "Successfully add to wishlist"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "83"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"53-W2LxPLppsoHNOyr3fpke7hUlFyM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:22:29 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/wishlist/{id}": {
+      "delete": {
+        "summary": "Remove Wishlist with spesific ID",
+        "tags": ["Wishlist"],
+        "operationId": "RemoveWishlistwithspesificID",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401RemoveWishlistwithspesificID%7CUnauthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 401,
+                "message": "Unauthorized request"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "51"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"33-c78BqaMJ8o9Wk4Hk7Rn9uG1q9Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:36:46 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404RemoveWishlistwithspesificID%7CNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 404,
+                "message": "Id not found"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "43"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2b-1EtruGW03CJBkPWaoW2Y22hxr0o\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:37:24 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200RemoveWishlistwithspesificID"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": 200,
+                "status": "Delete Wishlist",
+                "message": "Succesfully delete data"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "81"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"51-Bp0z/tsEPDsMQaiupTtLQ2S2y9Q\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 30 Jun 2022 13:38:18 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/notif": {
+      "get": {
+        "summary": "List Notif",
+        "tags": ["Notifikasi"],
+        "operationId": "ListNotif",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200ListNotif"
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "3896"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"f38-oPAAa64AFJd5oFFc6OEfduLTtgU\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 08 Jul 2022 14:02:31 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/notif/{id}": {
+      "put": {
+        "summary": "Update Notif",
+        "tags": ["Notifikasi"],
+        "operationId": "UpdateNotif",
+        "deprecated": false,
+        "produces": ["application/json; charset=utf-8"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200UpdateNotif"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "statusCode": "200",
+                "status": "Update Notification",
+                "message": "Successfully update notification",
+                "notifUpdate": [1]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "114"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"72-Jvvk+NFG9tgTzZJnrh/UhciEWxU\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 08 Jul 2022 14:13:13 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
     }
-  }
+  },
+  "definitions": {
+    "400Register|Fieldrequired1": {
+      "title": "400Register|Fieldrequired1",
+      "example": {
+        "statusCode": 400,
+        "message": ["Nama required", "Email required", "Password required"]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "422Register|Emailalreadyexist1": {
+      "title": "422Register|Emailalreadyexist1",
+      "example": {
+        "statusCode": 422,
+        "message": "Email already exists"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "201Register": {
+      "title": "201Register",
+      "example": {
+        "statusCode": "201",
+        "status": "Created",
+        "message": "Successfully create user",
+        "data": {
+          "id": 9,
+          "email": "testaja@gmail.com",
+          "createdAt": "2022-06-24T15:29:06.583Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": ["statusCode", "status", "message", "data"]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "id": 9,
+        "email": "testaja@gmail.com",
+        "createdAt": "2022-06-24T15:29:06.583Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "email", "createdAt"]
+    },
+    "200Login": {
+      "title": "200Login",
+      "example": {
+        "statusCode": "200",
+        "status": "Login",
+        "message": "Success login",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJ0ZXN0YWphQGdtYWlsLmNvbSIsImlhdCI6MTY1NjA4NTI0OX0.PPo7yuFV9OlI4oJypVLnipIL9ImgxKLXMR-ztsFR6hE",
+        "data": {
+          "id": 9,
+          "nama": "test aja",
+          "email": "testaja@gmail.com",
+          "createdAt": "2022-06-24T15:29:06.583Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data1"
+        }
+      },
+      "required": ["statusCode", "status", "message", "token", "data"]
+    },
+    "Data1": {
+      "title": "Data1",
+      "example": {
+        "id": 9,
+        "nama": "test aja",
+        "email": "testaja@gmail.com",
+        "createdAt": "2022-06-24T15:29:06.583Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "nama", "email", "createdAt"]
+    },
+    "400Login|FieldRequired1": {
+      "title": "400Login|FieldRequired1",
+      "example": {
+        "statusCode": 400,
+        "message": ["Email required", "Password required"]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "401Login|Invalidemailorpassword1": {
+      "title": "401Login|Invalidemailorpassword1",
+      "example": {
+        "statusCode": 401,
+        "message": "Invalid email or password"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200GetProfileUser": {
+      "title": "200GetProfileUser",
+      "example": {
+        "statusCode": "200",
+        "status": "Get Profile",
+        "message": "Successfully get profile",
+        "userProfile": {
+          "id": 9,
+          "user_id": 9,
+          "nama": "test aja",
+          "kota": null,
+          "alamat": null,
+          "no_handphone": null,
+          "image_url": null,
+          "createdAt": "2022-06-24T15:29:06.635Z",
+          "updatedAt": "2022-06-24T15:29:06.635Z",
+          "User": {
+            "id": 9,
+            "email": "testaja@gmail.com",
+            "password": "$2a$10$C7ayfROvOtWLbe2zsHJc9emJShQ8eOMdmp8mQwl/2jTsafimAbctK",
+            "createdAt": "2022-06-24T15:29:06.583Z",
+            "updatedAt": "2022-06-24T15:29:06.583Z"
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "userProfile": {
+          "$ref": "#/definitions/UserProfile"
+        }
+      },
+      "required": ["statusCode", "status", "message", "userProfile"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "example": {
+        "id": 9,
+        "user_id": 9,
+        "nama": "test aja",
+        "kota": null,
+        "alamat": null,
+        "no_handphone": null,
+        "image_url": null,
+        "createdAt": "2022-06-24T15:29:06.635Z",
+        "updatedAt": "2022-06-24T15:29:06.635Z",
+        "User": {
+          "id": 9,
+          "email": "testaja@gmail.com",
+          "password": "$2a$10$C7ayfROvOtWLbe2zsHJc9emJShQ8eOMdmp8mQwl/2jTsafimAbctK",
+          "createdAt": "2022-06-24T15:29:06.583Z",
+          "updatedAt": "2022-06-24T15:29:06.583Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "kota": {
+          "type": "string"
+        },
+        "alamat": {
+          "type": "string"
+        },
+        "no_handphone": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "User": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "id",
+        "user_id",
+        "nama",
+        "kota",
+        "alamat",
+        "no_handphone",
+        "image_url",
+        "createdAt",
+        "updatedAt",
+        "User"
+      ]
+    },
+    "User": {
+      "title": "User",
+      "example": {
+        "id": 9,
+        "email": "testaja@gmail.com",
+        "password": "$2a$10$C7ayfROvOtWLbe2zsHJc9emJShQ8eOMdmp8mQwl/2jTsafimAbctK",
+        "createdAt": "2022-06-24T15:29:06.583Z",
+        "updatedAt": "2022-06-24T15:29:06.583Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "email", "password", "createdAt", "updatedAt"]
+    },
+    "401GetProfileUser|Unauthorized1": {
+      "title": "401GetProfileUser|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200UpdateProfileUser": {
+      "title": "200UpdateProfileUser",
+      "example": {
+        "statusCode": "200",
+        "status": "Updated",
+        "message": "Successfully update profile",
+        "updateProfileUser": [1]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "updateProfileUser": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "updateProfileUser"]
+    },
+    "401UpdateProfileUser|Unauthorized1": {
+      "title": "401UpdateProfileUser|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "404GetProductByID|NotFound1": {
+      "title": "404GetProductByID|NotFound1",
+      "example": {
+        "statusCode": 404,
+        "message": "Product Not Found !"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200GetProductByID": {
+      "title": "200GetProductByID",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get product by id 1",
+        "product": {
+          "id": 1,
+          "nama": "product update",
+          "deskripsi": "product pertama update",
+          "harga": 20000,
+          "product_photos": [
+            "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+          ],
+          "categories": ["Makanan", "Minuman", "Fashion"],
+          "seller_id": 1,
+          "sold": false,
+          "createdAt": "2022-07-06T13:35:47.793Z",
+          "updatedAt": "2022-07-06T13:45:01.478Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        }
+      },
+      "required": ["statusCode", "status", "message", "product"]
+    },
+    "Product": {
+      "title": "Product",
+      "example": {
+        "id": 1,
+        "nama": "product update",
+        "deskripsi": "product pertama update",
+        "harga": 20000,
+        "product_photos": [
+          "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+        ],
+        "categories": ["Makanan", "Minuman", "Fashion"],
+        "seller_id": 1,
+        "sold": false,
+        "createdAt": "2022-07-06T13:35:47.793Z",
+        "updatedAt": "2022-07-06T13:45:01.478Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seller_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sold": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "deskripsi",
+        "harga",
+        "product_photos",
+        "categories",
+        "seller_id",
+        "sold",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "400CreateProduct|FieldRequired1": {
+      "title": "400CreateProduct|FieldRequired1",
+      "example": {
+        "statusCode": 400,
+        "message": ["Nama required", "Deskripsi required", "Harga required"]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "401CreateProduct|Unauthorized1": {
+      "title": "401CreateProduct|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "201CreateProduct": {
+      "title": "201CreateProduct",
+      "example": {
+        "statusCode": "201",
+        "status": "Created",
+        "message": "Successfully create product",
+        "createdProduct": {
+          "id": 3,
+          "nama": "baju jelek",
+          "deskripsi": "Product kece",
+          "harga": 10000,
+          "product_photos": [
+            "https://res.cloudinary.com/test-bos/image/upload/v1657114624/second-hand/products-images/baju%20jelek/product_photos-az.JPG.jpg",
+            "https://res.cloudinary.com/test-bos/image/upload/v1656692562/second-hand/products-images/baju%20jelek/product_photos-monkey.JPG.jpg"
+          ],
+          "categories": ["Makanan"],
+          "sold": false,
+          "seller_id": 1,
+          "updatedAt": "2022-07-06T13:36:57.383Z",
+          "createdAt": "2022-07-06T13:36:57.383Z"
+        },
+        "Notif": {
+          "id": 3,
+          "product_id": 3,
+          "user_id": 1,
+          "jenis_notifikasi": "Publish product",
+          "isClick": false,
+          "updatedAt": "2022-07-06T13:36:57.499Z",
+          "createdAt": "2022-07-06T13:36:57.499Z",
+          "penawaran_id": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "createdProduct": {
+          "$ref": "#/definitions/CreatedProduct"
+        },
+        "Notif": {
+          "$ref": "#/definitions/Notif"
+        }
+      },
+      "required": ["statusCode", "status", "message", "createdProduct", "Notif"]
+    },
+    "CreatedProduct": {
+      "title": "CreatedProduct",
+      "example": {
+        "id": 3,
+        "nama": "baju jelek",
+        "deskripsi": "Product kece",
+        "harga": 10000,
+        "product_photos": [
+          "https://res.cloudinary.com/test-bos/image/upload/v1657114624/second-hand/products-images/baju%20jelek/product_photos-az.JPG.jpg",
+          "https://res.cloudinary.com/test-bos/image/upload/v1656692562/second-hand/products-images/baju%20jelek/product_photos-monkey.JPG.jpg"
+        ],
+        "categories": ["Makanan"],
+        "sold": false,
+        "seller_id": 1,
+        "updatedAt": "2022-07-06T13:36:57.383Z",
+        "createdAt": "2022-07-06T13:36:57.383Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sold": {
+          "type": "boolean"
+        },
+        "seller_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "deskripsi",
+        "harga",
+        "product_photos",
+        "categories",
+        "sold",
+        "seller_id",
+        "updatedAt",
+        "createdAt"
+      ]
+    },
+    "Notif": {
+      "title": "Notif",
+      "example": {
+        "id": 3,
+        "product_id": 3,
+        "user_id": 1,
+        "jenis_notifikasi": "Publish product",
+        "isClick": false,
+        "updatedAt": "2022-07-06T13:36:57.499Z",
+        "createdAt": "2022-07-06T13:36:57.499Z",
+        "penawaran_id": null
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jenis_notifikasi": {
+          "type": "string"
+        },
+        "isClick": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "penawaran_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "user_id",
+        "jenis_notifikasi",
+        "isClick",
+        "updatedAt",
+        "createdAt",
+        "penawaran_id"
+      ]
+    },
+    "200GetAllProducts|Auth": {
+      "title": "200GetAllProducts|Auth",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get all products",
+        "products": []
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "products"]
+    },
+    "200GetAllProducts|NoAuth": {
+      "title": "200GetAllProducts|NoAuth",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get all products",
+        "products": [
+          {
+            "id": 1,
+            "nama": "Product second",
+            "deskripsi": "Product baru",
+            "harga": 10000,
+            "image_url": "public\\data\\uploads\\image_url-1656336095351-monkey.JPG",
+            "categories": ["Elektronik"],
+            "seller_id": 2,
+            "createdAt": "2022-06-27T13:21:35.362Z",
+            "updatedAt": "2022-06-27T13:21:35.362Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product1"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "products"]
+    },
+    "Product1": {
+      "title": "Product1",
+      "example": {
+        "id": 1,
+        "nama": "Product second",
+        "deskripsi": "Product baru",
+        "harga": 10000,
+        "image_url": "public\\data\\uploads\\image_url-1656336095351-monkey.JPG",
+        "categories": ["Elektronik"],
+        "seller_id": 2,
+        "createdAt": "2022-06-27T13:21:35.362Z",
+        "updatedAt": "2022-06-27T13:21:35.362Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seller_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "deskripsi",
+        "harga",
+        "image_url",
+        "categories",
+        "seller_id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "401UpdateProduct|Unauthorized1": {
+      "title": "401UpdateProduct|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "404UpdateProduct|ProductNotFound1": {
+      "title": "404UpdateProduct|ProductNotFound1",
+      "example": {
+        "statusCode": 404,
+        "message": "Product not found"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "401UpdateProduct|FailedToken1": {
+      "title": "401UpdateProduct|FailedToken1",
+      "example": {
+        "statusCode": 401,
+        "message": "You dont have access for this product"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200UpdateProduct": {
+      "title": "200UpdateProduct",
+      "example": {
+        "statusCode": "200",
+        "status": "Updated",
+        "message": "Berhasil mengupdate produk",
+        "data": {
+          "id": 1,
+          "nama": "product update",
+          "deskripsi": "product pertama update",
+          "harga": 20000,
+          "product_photos": [
+            "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+          ],
+          "categories": ["Makanan", "Minuman", "Fashion"],
+          "seller_id": 1,
+          "sold": false,
+          "createdAt": "2022-07-06T13:35:47.793Z",
+          "updatedAt": "2022-07-06T13:45:01.478Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data2"
+        }
+      },
+      "required": ["statusCode", "status", "message", "data"]
+    },
+    "Data2": {
+      "title": "Data2",
+      "example": {
+        "id": 1,
+        "nama": "product update",
+        "deskripsi": "product pertama update",
+        "harga": 20000,
+        "product_photos": [
+          "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+        ],
+        "categories": ["Makanan", "Minuman", "Fashion"],
+        "seller_id": 1,
+        "sold": false,
+        "createdAt": "2022-07-06T13:35:47.793Z",
+        "updatedAt": "2022-07-06T13:45:01.478Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seller_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sold": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "deskripsi",
+        "harga",
+        "product_photos",
+        "categories",
+        "seller_id",
+        "sold",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "404DeleteProduct|Productnotfound1": {
+      "title": "404DeleteProduct|Productnotfound1",
+      "example": {
+        "statusCode": 404,
+        "message": "Product not found"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "401DeleteProduct|Failedtoken1": {
+      "title": "401DeleteProduct|Failedtoken1",
+      "example": {
+        "statusCode": 401,
+        "message": "You dont have access for this product"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "401DeleteProduct|Unauthorized1": {
+      "title": "401DeleteProduct|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200DeleteProduct": {
+      "title": "200DeleteProduct",
+      "example": {
+        "statusCode": "200",
+        "status": "Delete",
+        "message": "Successfully delete product",
+        "product": {
+          "id": 3,
+          "nama": "baju jelek",
+          "deskripsi": "Product kece",
+          "harga": 10000,
+          "product_photos": [
+            "https://res.cloudinary.com/test-bos/image/upload/v1657114624/second-hand/products-images/baju%20jelek/product_photos-az.JPG.jpg",
+            "https://res.cloudinary.com/test-bos/image/upload/v1656692562/second-hand/products-images/baju%20jelek/product_photos-monkey.JPG.jpg"
+          ],
+          "categories": ["Makanan"],
+          "seller_id": 1,
+          "sold": false,
+          "createdAt": "2022-07-06T13:36:57.383Z",
+          "updatedAt": "2022-07-06T13:36:57.383Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        }
+      },
+      "required": ["statusCode", "status", "message", "product"]
+    },
+    "200SearchProduct|nama": {
+      "title": "200SearchProduct|nama",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get product",
+        "products": [
+          {
+            "id": 1,
+            "nama": "product update",
+            "deskripsi": "product pertama update",
+            "harga": 20000,
+            "product_photos": [
+              "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+            ],
+            "categories": ["Makanan", "Minuman", "Fashion"],
+            "seller_id": 1,
+            "sold": false,
+            "createdAt": "2022-07-06T13:35:47.793Z",
+            "updatedAt": "2022-07-06T13:45:01.478Z"
+          },
+          {
+            "id": 4,
+            "nama": "update",
+            "deskripsi": "Product kece",
+            "harga": 10000,
+            "product_photos": [
+              "https://res.cloudinary.com/test-bos/image/upload/v1657115816/second-hand/products-images/update/product_photos-az.JPG.jpg",
+              "https://res.cloudinary.com/test-bos/image/upload/v1657115816/second-hand/products-images/update/product_photos-monkey.JPG.jpg"
+            ],
+            "categories": ["Makanan"],
+            "seller_id": 1,
+            "sold": false,
+            "createdAt": "2022-07-06T13:56:49.433Z",
+            "updatedAt": "2022-07-06T13:56:49.433Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "products"]
+    },
+    "200SearchProduct|deskripsi": {
+      "title": "200SearchProduct|deskripsi",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get product",
+        "products": [
+          {
+            "id": 1,
+            "nama": "product update",
+            "deskripsi": "product pertama update",
+            "harga": 20000,
+            "product_photos": [
+              "https://res.cloudinary.com/test-bos/image/upload/v1656692780/second-hand/products-images/product%20update/product_photos-irene.PNG.png"
+            ],
+            "categories": ["Makanan", "Minuman", "Fashion"],
+            "seller_id": 1,
+            "sold": false,
+            "createdAt": "2022-07-06T13:35:47.793Z",
+            "updatedAt": "2022-07-06T13:45:01.478Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "products"]
+    },
+    "200PaginationProduct|NoAuth": {
+      "title": "200PaginationProduct|NoAuth",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get product",
+        "products": {
+          "data": [
+            {
+              "id": 1,
+              "nama": "product update",
+              "deskripsi": "product pertama update",
+              "harga": 20000,
+              "image_url": "public\\data\\uploads\\image_url-1656336637198-monkey.JPG",
+              "categories": ["Minuman"],
+              "seller_id": 2,
+              "createdAt": "2022-06-27T13:21:35.362Z",
+              "updatedAt": "2022-06-27T13:30:37.311Z"
+            },
+            {
+              "id": 2,
+              "nama": "Product second",
+              "deskripsi": "Product baru",
+              "harga": 10000,
+              "image_url": "public\\data\\uploads\\image_url-1656337099099-monkey.JPG",
+              "categories": ["Elektronik", "Makanan"],
+              "seller_id": 2,
+              "createdAt": "2022-06-27T13:38:19.103Z",
+              "updatedAt": "2022-06-27T13:38:19.103Z"
+            },
+            {
+              "id": 3,
+              "nama": "Product second",
+              "deskripsi": "Product baru",
+              "harga": 10000,
+              "image_url": "public\\data\\uploads\\image_url-1656337895563-monkey.JPG",
+              "categories": ["Elektronik", "Makanan"],
+              "seller_id": 2,
+              "createdAt": "2022-06-27T13:51:35.565Z",
+              "updatedAt": "2022-06-27T13:51:35.565Z"
+            }
+          ],
+          "pagination": {
+            "total_records": 3,
+            "total_perpage": 3,
+            "total_page": 1,
+            "current_page": 1,
+            "next_page": null,
+            "previous_page": null
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "$ref": "#/definitions/Products"
+        }
+      },
+      "required": ["statusCode", "status", "message", "products"]
+    },
+    "Products": {
+      "title": "Products",
+      "example": {
+        "data": [
+          {
+            "id": 1,
+            "nama": "product update",
+            "deskripsi": "product pertama update",
+            "harga": 20000,
+            "image_url": "public\\data\\uploads\\image_url-1656336637198-monkey.JPG",
+            "categories": ["Minuman"],
+            "seller_id": 2,
+            "createdAt": "2022-06-27T13:21:35.362Z",
+            "updatedAt": "2022-06-27T13:30:37.311Z"
+          },
+          {
+            "id": 2,
+            "nama": "Product second",
+            "deskripsi": "Product baru",
+            "harga": 10000,
+            "image_url": "public\\data\\uploads\\image_url-1656337099099-monkey.JPG",
+            "categories": ["Elektronik", "Makanan"],
+            "seller_id": 2,
+            "createdAt": "2022-06-27T13:38:19.103Z",
+            "updatedAt": "2022-06-27T13:38:19.103Z"
+          },
+          {
+            "id": 3,
+            "nama": "Product second",
+            "deskripsi": "Product baru",
+            "harga": 10000,
+            "image_url": "public\\data\\uploads\\image_url-1656337895563-monkey.JPG",
+            "categories": ["Elektronik", "Makanan"],
+            "seller_id": 2,
+            "createdAt": "2022-06-27T13:51:35.565Z",
+            "updatedAt": "2022-06-27T13:51:35.565Z"
+          }
+        ],
+        "pagination": {
+          "total_records": 3,
+          "total_perpage": 3,
+          "total_page": 1,
+          "current_page": 1,
+          "next_page": null,
+          "previous_page": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data3"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        }
+      },
+      "required": ["data", "pagination"]
+    },
+    "Data3": {
+      "title": "Data3",
+      "example": {
+        "id": 1,
+        "nama": "product update",
+        "deskripsi": "product pertama update",
+        "harga": 20000,
+        "image_url": "public\\data\\uploads\\image_url-1656336637198-monkey.JPG",
+        "categories": ["Minuman"],
+        "seller_id": 2,
+        "createdAt": "2022-06-27T13:21:35.362Z",
+        "updatedAt": "2022-06-27T13:30:37.311Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seller_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "deskripsi",
+        "harga",
+        "image_url",
+        "categories",
+        "seller_id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Pagination": {
+      "title": "Pagination",
+      "example": {
+        "total_records": 3,
+        "total_perpage": 3,
+        "total_page": 1,
+        "current_page": 1,
+        "next_page": null,
+        "previous_page": null
+      },
+      "type": "object",
+      "properties": {
+        "total_records": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_perpage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "current_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "next_page": {
+          "type": "string"
+        },
+        "previous_page": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "total_records",
+        "total_perpage",
+        "total_page",
+        "current_page",
+        "next_page",
+        "previous_page"
+      ]
+    },
+    "200PaginationProduct|Auth": {
+      "title": "200PaginationProduct|Auth",
+      "example": {
+        "statusCode": "200",
+        "status": "Success",
+        "message": "Successfully get product",
+        "products": {
+          "data": [],
+          "pagination": {
+            "total_records": 0,
+            "total_perpage": 3,
+            "total_page": 0,
+            "current_page": 1,
+            "next_page": 2,
+            "previous_page": null
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "$ref": "#/definitions/Products1"
+        }
+      },
+      "required": ["statusCode", "status", "message", "products"]
+    },
+    "Products1": {
+      "title": "Products1",
+      "example": {
+        "data": [],
+        "pagination": {
+          "total_records": 0,
+          "total_perpage": 3,
+          "total_page": 0,
+          "current_page": 1,
+          "next_page": 2,
+          "previous_page": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/Pagination1"
+        }
+      },
+      "required": ["data", "pagination"]
+    },
+    "Pagination1": {
+      "title": "Pagination1",
+      "example": {
+        "total_records": 0,
+        "total_perpage": 3,
+        "total_page": 0,
+        "current_page": 1,
+        "next_page": 2,
+        "previous_page": null
+      },
+      "type": "object",
+      "properties": {
+        "total_records": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_perpage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "current_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "next_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "previous_page": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "total_records",
+        "total_perpage",
+        "total_page",
+        "current_page",
+        "next_page",
+        "previous_page"
+      ]
+    },
+    "404CreatePenawaran|ProduknotFound": {
+      "title": "404CreatePenawaran|ProduknotFound",
+      "example": {
+        "statusCode": 404,
+        "message": "Produk not Found"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "401CreatePenawaran|UnauthorizedRequest": {
+      "title": "401CreatePenawaran|UnauthorizedRequest",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "400CreatePenawaran|HargaRequired": {
+      "title": "400CreatePenawaran|HargaRequired",
+      "example": {
+        "statusCode": 400,
+        "message": ["Harga required"]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "201CreatePenawaran": {
+      "title": "201CreatePenawaran",
+      "example": {
+        "status": 201,
+        "message": "Penawaranmu berhasil dikirim",
+        "harga": {
+          "id": 1,
+          "harga": 2000,
+          "productId": 1,
+          "buyerId": 2,
+          "updatedAt": "2022-07-05T13:05:18.701Z",
+          "createdAt": "2022-07-05T13:05:18.701Z",
+          "agreement": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "harga": {
+          "$ref": "#/definitions/Harga"
+        }
+      },
+      "required": ["status", "message", "harga"]
+    },
+    "Harga": {
+      "title": "Harga",
+      "example": {
+        "id": 1,
+        "harga": 2000,
+        "productId": 1,
+        "buyerId": 2,
+        "updatedAt": "2022-07-05T13:05:18.701Z",
+        "createdAt": "2022-07-05T13:05:18.701Z",
+        "agreement": null
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buyerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "agreement": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "harga",
+        "productId",
+        "buyerId",
+        "updatedAt",
+        "createdAt",
+        "agreement"
+      ]
+    },
+    "GetDetailPenawaran": {
+      "title": "GetDetailPenawaran",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200GetDetailPenawaran": {
+      "title": "200GetDetailPenawaran",
+      "example": {
+        "status": 200,
+        "message": "Successfully get offer by id 1",
+        "offer": {
+          "id": 1,
+          "productId": 1,
+          "buyerId": 1,
+          "harga": 2012,
+          "agreement": false,
+          "createdAt": "2022-07-05T12:50:03.496Z",
+          "updatedAt": "2022-07-05T12:57:03.547Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "offer": {
+          "$ref": "#/definitions/Offer"
+        }
+      },
+      "required": ["status", "message", "offer"]
+    },
+    "Offer": {
+      "title": "Offer",
+      "example": {
+        "id": 1,
+        "productId": 1,
+        "buyerId": 1,
+        "harga": 2012,
+        "agreement": false,
+        "createdAt": "2022-07-05T12:50:03.496Z",
+        "updatedAt": "2022-07-05T12:57:03.547Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buyerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "agreement": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "productId",
+        "buyerId",
+        "harga",
+        "agreement",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "200AcceptPenawaran": {
+      "title": "200AcceptPenawaran",
+      "example": {
+        "status": 200,
+        "message": "Penawaran diterima",
+        "data": {
+          "id": 1,
+          "productId": 1,
+          "buyerId": 1,
+          "harga": 2012,
+          "agreement": true,
+          "createdAt": "2022-07-05T12:50:03.496Z",
+          "updatedAt": "2022-07-05T14:16:01.191Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data4"
+        }
+      },
+      "required": ["status", "message", "data"]
+    },
+    "Data4": {
+      "title": "Data4",
+      "example": {
+        "id": 1,
+        "productId": 1,
+        "buyerId": 1,
+        "harga": 2012,
+        "agreement": true,
+        "createdAt": "2022-07-05T12:50:03.496Z",
+        "updatedAt": "2022-07-05T14:16:01.191Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buyerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "agreement": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "productId",
+        "buyerId",
+        "harga",
+        "agreement",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "200DecinePenawaran": {
+      "title": "200DecinePenawaran",
+      "example": {
+        "status": 200,
+        "message": "Penawaran ditolak",
+        "data": {
+          "id": 1,
+          "productId": 1,
+          "buyerId": 1,
+          "harga": 2012,
+          "agreement": false,
+          "createdAt": "2022-07-05T12:50:03.496Z",
+          "updatedAt": "2022-07-05T14:14:20.905Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data4"
+        }
+      },
+      "required": ["status", "message", "data"]
+    },
+    "200ListWishlist": {
+      "title": "200ListWishlist",
+      "example": {
+        "statusCode": 200,
+        "status": "Get all",
+        "message": "Successfully get all wishlist",
+        "wishlistAll": [
+          {
+            "id": 1,
+            "user_id": 1,
+            "product_id": 1,
+            "createdAt": "2022-06-30T13:15:14.199Z",
+            "updatedAt": "2022-06-30T13:15:14.199Z",
+            "Product": {
+              "id": 1,
+              "nama": "product update",
+              "deskripsi": "product pertama update",
+              "harga": 20000,
+              "image_url": "public\\data\\uploads\\image_url-1656336637198-monkey.JPG",
+              "categories": ["Minuman"],
+              "seller_id": 2,
+              "createdAt": "2022-06-27T13:21:35.362Z",
+              "updatedAt": "2022-06-27T13:30:37.311Z"
+            }
+          },
+          {
+            "id": 2,
+            "user_id": 1,
+            "product_id": 2,
+            "createdAt": "2022-06-30T13:22:29.825Z",
+            "updatedAt": "2022-06-30T13:22:29.825Z",
+            "Product": {
+              "id": 2,
+              "nama": "Product second",
+              "deskripsi": "Product baru",
+              "harga": 10000,
+              "image_url": "public\\data\\uploads\\image_url-1656337099099-monkey.JPG",
+              "categories": ["Elektronik", "Makanan"],
+              "seller_id": 2,
+              "createdAt": "2022-06-27T13:38:19.103Z",
+              "updatedAt": "2022-06-27T13:38:19.103Z"
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "wishlistAll": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WishlistAll"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "wishlistAll"]
+    },
+    "WishlistAll": {
+      "title": "WishlistAll",
+      "example": {
+        "id": 1,
+        "user_id": 1,
+        "product_id": 1,
+        "createdAt": "2022-06-30T13:15:14.199Z",
+        "updatedAt": "2022-06-30T13:15:14.199Z",
+        "Product": {
+          "id": 1,
+          "nama": "product update",
+          "deskripsi": "product pertama update",
+          "harga": 20000,
+          "image_url": "public\\data\\uploads\\image_url-1656336637198-monkey.JPG",
+          "categories": ["Minuman"],
+          "seller_id": 2,
+          "createdAt": "2022-06-27T13:21:35.362Z",
+          "updatedAt": "2022-06-27T13:30:37.311Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product1"
+        }
+      },
+      "required": [
+        "id",
+        "user_id",
+        "product_id",
+        "createdAt",
+        "updatedAt",
+        "Product"
+      ]
+    },
+    "401ListWishlist|Unauthorized1": {
+      "title": "401ListWishlist|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "400AddWishlist|ProductAlready1": {
+      "title": "400AddWishlist|ProductAlready1",
+      "example": {
+        "statusCode": 400,
+        "message": "Product already added to the wishlist"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "201AddWishlist": {
+      "title": "201AddWishlist",
+      "example": {
+        "statusCode": 201,
+        "status": "Add wishlist",
+        "message": "Successfully add to wishlist"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "status", "message"]
+    },
+    "401RemoveWishlistwithspesificID|Unauthorized1": {
+      "title": "401RemoveWishlistwithspesificID|Unauthorized1",
+      "example": {
+        "statusCode": 401,
+        "message": "Unauthorized request"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "404RemoveWishlistwithspesificID|NotFound1": {
+      "title": "404RemoveWishlistwithspesificID|NotFound1",
+      "example": {
+        "statusCode": 404,
+        "message": "Id not found"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "message"]
+    },
+    "200RemoveWishlistwithspesificID": {
+      "title": "200RemoveWishlistwithspesificID",
+      "example": {
+        "statusCode": 200,
+        "status": "Delete Wishlist",
+        "message": "Succesfully delete data"
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["statusCode", "status", "message"]
+    },
+    "200ListNotif": {
+      "title": "200ListNotif",
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "readNotif": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReadNotif"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "readNotif"]
+    },
+    "ReadNotif": {
+      "title": "ReadNotif",
+      "example": {
+        "id": 4,
+        "product_id": 1,
+        "user_id": 2,
+        "penawaran_id": 3,
+        "isClick": false,
+        "jenis_notifikasi": "Penawaran Successfully Submitted",
+        "createdAt": "2022-07-08T13:54:42.386Z",
+        "updatedAt": "2022-07-08T13:54:42.386Z",
+        "User": {
+          "id": 2,
+          "email": "testaja1@gmail.co",
+          "password": "$2a$10$6rBYuuNi8mJ7V.iX7CaGiOqdOObR.dkTHeFUf0z7EXryN0tYFE9M.",
+          "createdAt": "2022-07-08T13:48:49.960Z",
+          "updatedAt": "2022-07-08T13:48:49.960Z"
+        },
+        "Product": {
+          "id": 1,
+          "nama": "nasi",
+          "harga": 10000,
+          "product_photos": [],
+          "createdAt": "2022-07-06T13:12:19.653Z",
+          "updatedAt": "2022-07-06T13:17:21.305Z"
+        },
+        "Penawaran": {
+          "id": 3,
+          "productId": 1,
+          "buyerId": 2,
+          "harga": 20000,
+          "agreement": null,
+          "createdAt": "2022-07-08T13:54:42.358Z",
+          "updatedAt": "2022-07-08T13:54:42.358Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {},
+        "penawaran_id": {},
+        "isClick": {
+          "type": "boolean"
+        },
+        "jenis_notifikasi": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "User": {
+          "$ref": "#/definitions/User1"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product6"
+        },
+        "Penawaran": {
+          "$ref": "#/definitions/Penawaran"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "user_id",
+        "penawaran_id",
+        "isClick",
+        "jenis_notifikasi",
+        "createdAt",
+        "updatedAt",
+        "User",
+        "Product",
+        "Penawaran"
+      ]
+    },
+    "User1": {
+      "title": "User1",
+      "example": {
+        "id": 2,
+        "email": "testaja1@gmail.co",
+        "password": "$2a$10$6rBYuuNi8mJ7V.iX7CaGiOqdOObR.dkTHeFUf0z7EXryN0tYFE9M.",
+        "createdAt": "2022-07-08T13:48:49.960Z",
+        "updatedAt": "2022-07-08T13:48:49.960Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "Product6": {
+      "title": "Product6",
+      "example": {
+        "id": 1,
+        "nama": "nasi",
+        "harga": 10000,
+        "product_photos": [],
+        "createdAt": "2022-07-06T13:12:19.653Z",
+        "updatedAt": "2022-07-06T13:17:21.305Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "harga",
+        "product_photos",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Penawaran": {
+      "title": "Penawaran",
+      "example": {
+        "id": 3,
+        "productId": 1,
+        "buyerId": 2,
+        "harga": 20000,
+        "agreement": null,
+        "createdAt": "2022-07-08T13:54:42.358Z",
+        "updatedAt": "2022-07-08T13:54:42.358Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buyerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "agreement": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "200UpdateNotif": {
+      "title": "200UpdateNotif",
+      "example": {
+        "statusCode": "200",
+        "status": "Update Notification",
+        "message": "Successfully update notification",
+        "notifUpdate": [1]
+      },
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "notifUpdate": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "required": ["statusCode", "status", "message", "notifUpdate"]
+    }
+  },
+  "tags": [
+    {
+      "name": "Register"
+    },
+    {
+      "name": "Login"
+    },
+    {
+      "name": "Profile"
+    },
+    {
+      "name": "Products"
+    },
+    {
+      "name": "Penawaran"
+    },
+    {
+      "name": "Wishlist"
+    },
+    {
+      "name": "Notifikasi"
+    }
+  ]
 }
