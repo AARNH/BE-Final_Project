@@ -12,17 +12,17 @@ class NotifController {
         where: {
           isClick: false,
         },
-        include: {
+        include: [ {
           model: User,
           attibutes: ["id", "email", "createdAt", "updatedAt"],
         },
-        include: {
+        {
           model: Product,
           attributes: ["id", "nama", "harga", "product_photos", "createdAt", "updatedAt"],
         },
-        include: {
+        {
           model: Penawaran,
-        }
+        }]
       });
 
       {
@@ -38,7 +38,7 @@ class NotifController {
     }
   }
 
-  static async updateNotifbyId(res, req, next) {
+  static async updateNotifbyId(req, res, next) {
     try {
       const notifUpdate = await Notifikasi.update({
         isClick: true,
